@@ -3,11 +3,15 @@ version: 0.2
 phases:
   build:
     commands:
-    - echo "This is build phase... Zipping my webpage"
- 
+      - echo "This is build phase... Zipping my webpage"
+  
   post_build:
     commands:
-    - echo "Deployed to S3"
+      - echo "Deployed to S3"
+
 artifacts:
   files:
     - '**/*'
+  # CRITICAL FIX: This tells CodeBuild to take everything from 
+  # the root folder of the project (where index.html is)
+  base-directory: .
